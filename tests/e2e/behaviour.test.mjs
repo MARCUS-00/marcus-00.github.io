@@ -240,6 +240,8 @@ test("with motion: below-the-fold reveals run, and numbers are exact from the fi
     await page.addInitScript(() => document.addEventListener("DOMContentLoaded", () =>
       requestAnimationFrame(() => window.__first([...document.querySelectorAll(".moment .mv, .reading-value")].map((e) => e.textContent)))));
     await page.goto(u("/work/"));
+    /* The first-frame callback is delivered asynchronously and can land just after goto resolves. */
+    for (let i = 0; i < 100 && first.length === 0; i++) await page.waitForTimeout(20);
     assert.deepEqual(first[0], ["0.2308", "61.5%", "0.54"], "no intermediate values at first paint");
     await page.waitForTimeout(700);
     assert.ok((await page.$$eval(".rv", (e) => e.length)) > 0, "below-the-fold elements wait to reveal");
