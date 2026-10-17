@@ -1,0 +1,8 @@
+# Text files use LF in every checkout, so builds are byte-identical on every platform.
+* text=auto eol=lf
+
+# Binary assets are never converted.
+*.png binary
+*.jpg binary
+*.pdf binary
+*.woff2 binary

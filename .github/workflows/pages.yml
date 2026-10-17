@@ -1,0 +1,51 @@
+# Builds the site and publishes only the generated dist/ folder to GitHub Pages.
+# Nothing is committed back, so the rest of the repository is never touched.
+# One-time setup: repository Settings -> Pages -> Build and deployment -> Source: "GitHub Actions".
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    # Runs only in the GitHub Pages user-site repository; a fork or copy elsewhere has no Pages
+    # site to deploy to.
+    if: github.repository == 'MARCUS-00/marcus-00.github.io'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci --omit=dev
+      - run: npm test
+      - run: npm run build
+        env:
+          SITE_URL: https://marcus-00.github.io
+          BASE_PATH: /
+      - uses: actions/configure-pages@v6
+      - uses: actions/upload-pages-artifact@v5
+        with:
+          path: dist
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v5
