@@ -174,7 +174,7 @@ test("menu: opens, closes on Escape with focus returned, and navigates", async (
 test("skills: a plain inventory, with the analyst stack first and nothing to click", async () => {
   await withPage({ viewport: { width: 1440, height: 900 } }, async (page) => {
     await page.goto(u("/skills/"));
-    assert.deepEqual((await page.$$eval("#skillRows .r-k", (h) => h.map((x) => x.textContent))).slice(0, 2), ["Data analytics and BI", "SQL and data engineering"]);
+    assert.deepEqual((await page.$$eval("#skillRows .r-k", (h) => h.map((x) => x.textContent))).slice(0, 2), ["SQL and databases", "BI and visualisation"]);
     assert.equal(await page.$$eval("#skillRows a", (a) => a.length), 0);
     await page.hover('.skill:has(.s-n:text-is("SQL"))');
     assert.equal(await page.$$eval(".skill", (els) => els.filter((e) => getComputedStyle(e).opacity !== "1").length), 0, "no dimming");

@@ -76,7 +76,7 @@ test("factual guards", () => {
   assert.doesNotMatch(all, /0\.594/, "macro-F1 is reported as 0.59");
   assert.doesNotMatch(all, /graduating|student at/i, "degree is described as completed");
   assert.equal(content.profile.role, "Data Analyst");
-  assert.doesNotMatch(all, /beat my own forecast|shipped instead|feeding views/, "superseded Olist wording");
+  assert.doesNotMatch(all, /beat my own forecast|beat the (forecast )?model|lost to a plain seasonal|shipped instead|feeding views/, "superseded Olist wording");
   for (const kw of ["Python", "SQL", "Power BI"]) {
     assert.ok(content.skills.some((g) => g.items.some((s) => s.name === kw)), `${kw} is listed`);
   }

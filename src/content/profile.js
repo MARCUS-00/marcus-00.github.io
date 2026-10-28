@@ -9,9 +9,9 @@ export default {
   location: "Bengaluru, India",
   role: "Data Analyst",
   focus: "SQL · Python · Power BI · Excel · Statistics · Forecasting",
-  availability: "Open to data analyst opportunities",
-  contactLead: "Open to data analyst opportunities.",
-  lede: "I turn raw data into analysis, dashboards and validated findings — cleaning and querying it with SQL and Python, reporting it in Power BI, and testing results with statistics, forecasting and applied ML.",
+  availability: "Open to data, business and BI analyst roles",
+  contactLead: "Open to data, business and BI analyst roles.",
+  lede: "I clean and model data with SQL and Python, test what it shows, and report it in Power BI and Excel. Before I report a model's result, I compare it with a simple baseline.",
 
   email: "mailtomanojkumar07@gmail.com",
   /* Shown on the contact page only, as on the résumé. */

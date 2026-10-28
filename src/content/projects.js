@@ -52,18 +52,18 @@ export default [
     id: "olist",
     name: "Olist",
     kind: "Data analytics · BI · forecasting",
-    note: "99,441 orders cleaned into a PostgreSQL warehouse, analysed in SQL, tested statistically, forecast, and reported through Power BI. The validation step is a seasonal baseline, which beat the forecast model and was recommended instead.",
+    note: "99,441 orders cleaned into a PostgreSQL warehouse, analysed in SQL, tested statistically, forecast, and reported through Power BI. The validation step is a seasonal baseline, which tied with the forecast model and, being simpler, was recommended instead.",
     title: "Olist revenue and retention analytics",
     lede: "99,441 e-commerce orders cleaned into a PostgreSQL warehouse, examined through eighteen SQL analyses, tested statistically, forecast, and reported through Power BI.",
     line: "A Python ETL into a PostgreSQL warehouse, eighteen SQL analyses using joins, CTEs and window functions, retention and delivery findings, and a 28-day demand forecast benchmarked before anyone trusted it.",
     stack: ["SQL", "Python", "PostgreSQL 16", "Power BI", "DAX", "Excel", "Docker", "GitHub Actions"],
-    moment: { value: "0.2308", caption: "WAPE of the seasonal baseline, which beat the model by 0.0002 and was recommended instead." },
+    moment: { value: "0.2308", caption: "WAPE of the seasonal baseline, effectively tied with the model's 0.2310, so the simpler method was recommended." },
     stages: [
       { k: "Source", t: "99,441 Olist orders", d: "nine relational tables" },
       { k: "Process", t: "Python ETL", d: "automated cleaning, 10 data-quality tests" },
       { k: "Store", t: "PostgreSQL 16 in Docker", d: "star-schema warehouse" },
       { k: "Validation", t: "SQL analysis and forecast benchmark", d: "18 analyses, 28-day WAPE", gate: true, metric: "0.2308" },
-      { k: "Output", t: "Power BI dashboard", d: "reporting views and DAX measures" },
+      { k: "Output", t: "Power BI dashboard", d: "four pages, 43 DAX measures" },
     ],
     facts: [
       { k: "Orders", v: "99,441" },
@@ -78,7 +78,7 @@ export default [
       { k: "Problem", v: "Three planning questions, framed as a marketplace's leadership would ask them: what drives revenue and where is it concentrated; what share of customers ever return; and does late delivery measurably affect satisfaction?" },
       { k: "Data", v: "The public Olist Brazilian e-commerce dataset: 99,441 orders across nine relational tables, from 2016 to 2018." },
       { k: "What made it hard", v: "customer_id identifies an order, not a person, so a naive repeat-purchase rate reads as roughly zero. Item totals and payments disagree on 303 orders. Revenue and demand need different populations of orders." },
-      { k: "Approach", v: "A validated Python ETL into a PostgreSQL 16 star schema; eighteen SQL analyses using joins, CTEs and window functions; a Mann-Whitney U test; cohort and RFM analysis; a walk-forward demand forecast; reporting views and DAX measures for Power BI; and an Excel pivot summary." },
+      { k: "Approach", v: "A validated Python ETL into a PostgreSQL 16 star schema; eighteen SQL queries using joins, CTEs and window functions (fifteen business questions and three data-quality and reconciliation checks); a Mann-Whitney U test; cohort and RFM analysis; a walk-forward demand forecast; a four-page Power BI dashboard with 43 DAX measures; an Excel pivot summary; and a short written memo of findings and recommendations." },
     ],
     /* The repository's headline finding, from docs/findings.md #2 (percentages rounded to one place).
        notebooks/03_delivery_reviews.ipynb records the one-sided p-value as 0.000e+00 (below
@@ -125,15 +125,19 @@ export default [
     evidence: {
       links: [
         { k: "Repository", href: "https://github.com/MARCUS-00/ecommerce-retention-analytics", text: "github.com/MARCUS-00/ecommerce-retention-analytics" },
+        { k: "Dashboard", href: "https://github.com/MARCUS-00/ecommerce-retention-analytics#dashboard", text: "All four Power BI pages, in the repository README" },
+        { k: "Memo", href: "https://github.com/MARCUS-00/ecommerce-retention-analytics/blob/main/docs/insights_memo.pdf", text: "insights_memo.pdf: findings and recommendations on one page" },
       ],
       code: {
-        caption: "One of the eighteen analyses: the repeat-purchase rate, counted by person rather than by order.",
+        caption: "One of the eighteen queries: the repeat-purchase rate, counted by person rather than by order.",
         lang: "SQL",
         code: REPEAT_PURCHASE_SQL,
         href: "https://github.com/MARCUS-00/ecommerce-retention-analytics/blob/main/sql/03_analysis/13_repeat_purchase_rate.sql",
         text: "13_repeat_purchase_rate.sql on GitHub",
       },
-      /* Byte-identical copy of dashboard/screenshots/page1_executive_overview.jpg in the repository. */
+      /* Rendered from a native Power BI Desktop PDF export of the Executive Overview page of
+         dashboard/ecommerce_retention_dashboard_final.pbix (the page shown in
+         dashboard/screenshots/page1_executive_overview.jpg); not a byte copy of that file. */
       media: {
         src: "/olist-dashboard-overview.jpg",
         alt: "The Executive Overview page of the Power BI dashboard: revenue of R$15,419,773.75 from 96,478 delivered orders, an average order value of R$159.83 and month-over-month revenue growth of −4.1%, above charts of monthly revenue and its month-over-month change, a Pareto chart of the top 15 product categories, and revenue by customer state.",
@@ -152,7 +156,7 @@ export default [
     title: "OsteoScan",
     lede: "Early detection of osteoporosis using dental X-rays: a three-class bone-density classifier, checked against patient leakage and served over HTTP.",
     line: "A convolutional classifier on dental radiographs, served behind a Flask endpoint. The first evaluation split patches at random, which leaked patients into the test set; the figure shown is the corrected one.",
-    stack: ["Python", "TensorFlow", "Keras", "EfficientNet-B0", "Flask", "SQLite", "Docker", "GitHub Actions"],
+    stack: ["Python", "TensorFlow", "Keras", "EfficientNet-B0", "OpenCV", "Flask", "SQLite", "Docker", "GitHub Actions"],
     moment: { value: "61.5%", caption: "accuracy under patient-grouped cross-validation, where chance for three classes is 33.3%" },
     stages: [
       { k: "Input", t: "Dental radiographs", d: "periapical X-rays, 13 patients" },
@@ -191,10 +195,14 @@ export default [
        Binomial(13, 8/13), and the 2.5% and 97.5% points are taken as the generalised inverse of
        its CDF, Q(q) = min{x : F(x) >= q}. F(4/13) = 0.0245 and F(5/13) = 0.0789 give 5/13 = 38.5%;
        F(10/13) = 0.9281 and F(11/13) = 0.9834 give 11/13 = 84.6%. F never equals 0.025 or 0.975,
-       so other tie conventions agree. The 30.8% the repository README and model card used to quote
-       came from a 10,000-draw estimate (git 5b24f94, seed 42). Re-running that procedure on these
-       outcomes places 279 draws at 4/13 or below against 245 expected; about 36% of such runs give
-       30.8%. Both now give the exact interval and describe the earlier estimate.
+       so other tie conventions agree. The 30.8% that the repository README and model card quote
+       came from a 10,000-draw Monte Carlo estimate (git 5b24f94, bootstrap_ci, seed 42). Re-running
+       that code on these outcomes in that notebook's lexicographic source order places 279 draws at
+       4/13 or below against 245 expected, giving 30.8%; in the executed notebook's numeric order it
+       places 246 and gives 38.5%. About 36% of such runs give 30.8% (checked 18 Oct 2026). This is
+       the bootstrap distribution computed exactly, not an exact binomial interval: Clopper-Pearson
+       for 8/13 is 31.6% to 86.1%. As of commit ae318a3 (checked 18 Oct 2026) both still quote [30.8%, 84.6%]; update
+       them to the exact interval, and say how the earlier estimate arose, so the sources agree.
        tests/unit/content.test.mjs recomputes this from the finding.
        Patches: 75,075 in the dataset (13 sources × 5,775, counted 17 Oct 2026); STRIDE=2 keeps 37,538. */
     validation: {
@@ -232,7 +240,7 @@ export default [
     title: "Explainable models on financial data",
     lede: "Research at C3I, PES University, on multimodal financial data, where the useful result was how little signal there turned out to be.",
     line: "Applied ML research on multimodal financial data: feature engineering into an ensemble model, evaluated against chance and explained with SHAP.",
-    stack: ["Python", "XGBoost", "PyTorch", "FinBERT", "SHAP"],
+    stack: ["Python", "XGBoost", "PyTorch", "FinBERT", "SHAP", "Streamlit"],
     moment: { value: "0.54", caption: "AUC, where 0.50 is a coin flip — reported as measured rather than tuned upward" },
     stages: [
       { k: "Inputs", t: "Multimodal financial inputs", d: "prices, fundamentals, news, macro events" },
@@ -252,7 +260,7 @@ export default [
       { k: "Problem", v: "Can prices, fundamentals, news sentiment and macroeconomic events together predict the 10-day price direction of 40 Indian large-cap equities, and explain each prediction?" },
       { k: "Data", v: "Market prices and technical indicators, company fundamentals, news scored for sentiment with FinBERT, and macroeconomic events, combined into 68 features." },
       { k: "What made it hard", v: "Time-series data leaks easily: shuffled splits, statistics computed over every row, or validation scores taken from a refitted model all let the future into training. The signal itself is weak." },
-      { k: "Approach", v: "Time-based splits; an XGBoost and LSTM ensemble weighted by out-of-sample AUC; a per-stock sentiment-decay feature tuned on training data only; backtesting against transaction costs; and SHAP explanations for each prediction." },
+      { k: "Approach", v: "Time-based splits; an XGBoost and LSTM ensemble weighted by out-of-sample AUC; a per-stock sentiment-decay feature tuned on training data only; an automated leakage audit; backtesting against transaction costs; and SHAP explanations for each prediction." },
     ],
     /* Recomputed from evaluation/results/ensemble_results.csv: AUC 0.5407, accuracy 0.5337, always-up
        0.5466, and a seeded (42) 1,000-resample bootstrap interval of 0.5292 to 0.5519, as in the README.
@@ -266,7 +274,7 @@ export default [
       { q: "Keeping the future out of training", a: "Splits are time-based with no shuffling, and the per-stock sentiment-decay feature was tuned on training data only, so no feature sees the period it is asked to predict." },
       { q: "Validating on a train-only model", a: "Validation predictions come from a model trained on the training rows only, never from the refit on training and validation data. Without this, the gap between validation and test AUC was over 40 points and silently broke the ensemble weighting." },
       { q: "Backtesting with costs", a: "With a 0.1% cost on every position change, the ensemble's signals returned 10.52% over the test period against 12.23% for equal-weight buy-and-hold, and all four confidence-gated configurations had a negative Sharpe ratio. Neither result supports a tradeable edge. The signals feed a ranked daily watchlist filtered by a regime-adaptive confidence threshold." },
-      { q: "Explaining the model with SHAP", a: "SHAP attributions show which inputs the model relied on, and were turned into plain-English, per-prediction explanations for non-technical readers." },
+      { q: "Explaining the model with SHAP", a: "SHAP attributions show which inputs the model relied on, and were turned into plain-English, per-prediction explanations for non-technical readers in a Streamlit app." },
     ],
     validation: {
       body: "Splits are time-based; validation predictions come from a model trained on training rows only; and the test AUC was bootstrapped over 1,000 resamples.",

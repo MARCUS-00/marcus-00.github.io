@@ -8,7 +8,7 @@ export default {
   url: (process.env.SITE_URL ?? "https://marcus-00.github.io").replace(/\/+$/, ""),
 
   title: "Manoj Kumar — Data Analyst",
-  description: "Manoj Kumar, data analyst in Bengaluru. SQL, Python, Power BI, statistical analysis and forecasting, with applied machine learning.",
+  description: "Manoj Kumar, data analyst in Bengaluru, open to data, business and BI analyst roles. SQL, Python, Excel and Power BI, with statistics, forecasting and applied machine learning.",
 
   /* Social preview, used when set: a 1200×630 PNG under src/static/, e.g. "/social.png". */
   socialImage: "/social.png",
@@ -43,14 +43,14 @@ export default {
     sections: [
       { k: "What I work with", body: [
         "SQL and Python for most of it, Power BI and Excel for reporting, and statistics and forecasting when a question needs more than a summary.",
-        "The clearest example is the Olist project: a Python ETL with automated cleaning and data-quality tests, a PostgreSQL star-schema warehouse, eighteen SQL analyses and a Power BI dashboard with DAX measures. Machine learning is a supporting skill, applied in an X-ray screening model and in explainable models on financial data.",
+        "The clearest example is the Olist project: a Python ETL with automated cleaning and data-quality tests, a PostgreSQL star-schema warehouse, eighteen SQL queries, a four-page Power BI dashboard with 43 DAX measures, and a short memo of findings for non-technical readers. Machine learning is a supporting skill, applied in an X-ray screening model and in explainable models on financial data.",
       ] },
       { k: "How I check results", body: [
-        "I check a result before I report it. Two findings on this site correct my own first numbers. OsteoScan's first 97.28% accuracy came from the same patients appearing on both sides of the split; the corrected figure is 61.5%. On Olist, my demand forecast lost to a plain seasonal baseline by 0.0002 WAPE, so the baseline was recommended.",
+        "I check a result before I report it. Two findings on this site correct my own first numbers. OsteoScan's first 97.28% accuracy came from the same patients appearing on both sides of the split; the corrected figure is 61.5%. On Olist, my demand forecast did not beat a plain seasonal baseline (WAPE 0.2310 against 0.2308), so the simpler baseline was recommended.",
         "Findings from observational data are reported as associations, not causes.",
       ] },
       { k: "Now", body: [
-        "I completed my degree in July 2026, after a research internship at C3I, PES University, from January to May 2026. I'm open to data analyst opportunities.",
+        "I completed my degree in July 2026, after a research internship at C3I, PES University, from January to May 2026. I'm looking for data, business and BI analyst roles.",
       ] },
     ],
   },

@@ -2,10 +2,10 @@
 
 This repository builds **[marcus-00.github.io](https://marcus-00.github.io/)**, my portfolio as a
 data analyst based in Bengaluru, India. I have a B.Tech in Computer Science from PES University
-(completed July 2026) and am open to data analyst roles.
+(completed July 2026) and am open to data, business and BI analyst roles.
 
-I turn raw data into analysis, dashboards and validated findings — cleaning and querying it with SQL
-and Python, reporting it in Power BI, and testing results with statistics, forecasting and applied ML.
+I clean and model data with SQL and Python, test what it shows, and report it in Power BI and Excel.
+Before I report a model's result, I compare it with a simple baseline.
 
 **[Live portfolio](https://marcus-00.github.io/)** · **[Résumé (PDF)](https://marcus-00.github.io/Manoj_Kumar_Resume.pdf)** ·
 [LinkedIn](https://www.linkedin.com/in/manoj-kumar-analytics) · [Email](mailto:mailtomanojkumar07@gmail.com)
@@ -17,8 +17,9 @@ Each project is written up on the site with its question, data, method, validati
 ### [Olist revenue and retention analytics](https://marcus-00.github.io/p/olist/)
 
 A personal project on the public Olist Brazilian e-commerce dataset (99,441 orders across nine
-tables, 2016–2018): a Python ETL into a PostgreSQL 16 star schema, 18 SQL analyses, a Mann-Whitney U
-test, cohort and RFM analysis, a 28-day demand forecast and a Power BI dashboard.
+tables, 2016–2018): a Python ETL into a PostgreSQL 16 star schema, 18 SQL queries, a Mann-Whitney U
+test, cohort and RFM analysis, a 28-day demand forecast, a four-page Power BI dashboard with 43 DAX
+measures and a one-page memo of findings and recommendations.
 
 - **Findings:** 3.0% of customers placed a second delivered order. 8.11% of delivered orders arrived
   late, and late orders had a median review of 2/5 against 5/5 on time — an association, not proof
@@ -26,7 +27,9 @@ test, cohort and RFM analysis, a 28-day demand forecast and a Power BI dashboard
 - **Validation:** in a six-fold walk-forward backtest, a seasonal-naive baseline (WAPE 0.2308) was
   effectively tied with Holt-Winters (0.2310), so the simpler baseline is the recommended forecast.
 - **Tools:** SQL, Python, PostgreSQL, Power BI (DAX), Excel, Docker, GitHub Actions
-- **Code:** [MARCUS-00/ecommerce-retention-analytics](https://github.com/MARCUS-00/ecommerce-retention-analytics)
+- **Code and outputs:** [repository](https://github.com/MARCUS-00/ecommerce-retention-analytics) ·
+  [dashboard pages](https://github.com/MARCUS-00/ecommerce-retention-analytics#dashboard) ·
+  [insights memo (PDF)](https://github.com/MARCUS-00/ecommerce-retention-analytics/blob/main/docs/insights_memo.pdf)
 
 ### [OsteoScan: osteoporosis screening from dental X-rays](https://marcus-00.github.io/p/osteoscan/)
 
@@ -39,7 +42,7 @@ dataset, served as a Flask web app with Grad-CAM heatmaps and PDF reports.
 - **Validation:** under patient-grouped cross-validation the model scored 61.5% (8 of 13 patients)
   against 53.8% for a brightness-only baseline, with a 95% bootstrap interval of 38.5–84.6% that
   overlaps the baseline. It is a research prototype, not a diagnostic tool.
-- **Tools:** Python, TensorFlow and Keras, EfficientNet-B0, Flask, SQLite, Docker, GitHub Actions
+- **Tools:** Python, TensorFlow and Keras, EfficientNet-B0, OpenCV, Flask, SQLite, Docker, GitHub Actions
 - **Code and demo:** [repository](https://github.com/MARCUS-00/Early-Detection-of-Osteoporosis-using-Dental-X-rays) ·
   [live app](https://manojkumar724-osteoscan.hf.space) (sign-in required; accounts can be created on the page)
 
@@ -55,7 +58,7 @@ ensemble, explained with SHAP.
   buy-and-hold. It is a research scaffold, not a trading signal.
 - **Validation:** time-based splits, validation scores from a model trained on training rows only,
   and a test AUC of 0.54 against 0.50 for chance (bootstrap 95% interval 0.529–0.552).
-- **Tools:** Python, XGBoost, PyTorch, FinBERT, SHAP
+- **Tools:** Python, XGBoost, PyTorch, FinBERT, SHAP, Streamlit
 
 ## About this repository
 

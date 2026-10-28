@@ -45,7 +45,7 @@ test("core content is in the HTML itself, not injected by script", async () => {
   try {
     const home = await readFile(join(dir, "index.html"), "utf8");
     for (const s of ["Manoj Kumar", "Data Analyst", "Python", "SQL", "Power BI", "OsteoScan", "Olist", "C3I research",
-      "mailto:mailtomanojkumar07@gmail.com", "https://github.com/MARCUS-00", "/Manoj_Kumar_Resume.pdf", "Open to data analyst opportunities"]) {
+      "mailto:mailtomanojkumar07@gmail.com", "https://github.com/MARCUS-00", "/Manoj_Kumar_Resume.pdf", "Open to data, business and BI analyst roles"]) {
       assert.ok(home.includes(s), `home contains ${s}`);
     }
     const exp = await readFile(join(dir, "experience", "index.html"), "utf8");
@@ -81,7 +81,7 @@ test("adjacent text never runs together when read as text (screen readers, reade
     for (const s of ["Dental radiographs periapical", "PES University, completed July 2026 Research intern", "Work Experience Skills"]) assert.ok(home.includes(s), s);
     assert.ok((await text("work/index.html")).includes("SQL Python PostgreSQL 16"), "tool tags read as separate words");
     const skills = await text("skills/index.html");
-    assert.ok(/SQL Python Power BI Excel/.test(skills), "skills read as separate words");
+    assert.ok(/SQL PostgreSQL MySQL/.test(skills) && /Power BI DAX Power Query/.test(skills), "skills read as separate words");
     const olist = await text("p/olist/index.html");
     assert.ok(olist.includes("Source 99,441 Olist orders nine relational tables"));
   } finally {
@@ -282,19 +282,20 @@ test("Data Analyst is the stated role on every surface; nothing stale remains in
     const home = await readFile(join(dir, "index.html"), "utf8");
     assert.match(home, /<title>Manoj Kumar — Data Analyst<\/title>/);
     assert.match(home, /<p class="role">Data Analyst<\/p>/);
-    assert.match(home, /<meta name="description" content="Manoj Kumar, data analyst in Bengaluru\./);
-    for (const p of ["about/index.html", "contact/index.html"]) assert.ok((await pageText(dir, p)).includes("data analyst opportunities"), p);
+    assert.match(home, /<meta name="description" content="Manoj Kumar, data analyst in Bengaluru, open to data, business and BI analyst roles\./);
+    for (const p of ["about/index.html", "contact/index.html"]) assert.ok((await pageText(dir, p)).includes("data, business and BI analyst roles"), p);
   } finally {
     await rm(dir, { recursive: true, force: true });
   }
 });
 
 test("analyst skills lead the inventory; ML and engineering follow", () => {
+  /* The résumé's six groups (Oct 2026), in its order. */
   const order = content.skills.map((g) => g.group);
-  assert.equal(order[0], "Data analytics and BI");
-  assert.deepEqual(content.skills[0].items.slice(0, 4).map((s) => s.name.replace(/ \(.*/, "")), ["SQL", "Python", "Power BI", "Excel"]);
-  for (const later of ["Machine learning", "Engineering and tools", "Web"]) assert.ok(order.indexOf(later) > order.indexOf("Statistics and forecasting"), later);
-  assert.equal(order.at(-1), "Web", "JavaScript, HTML and CSS do not compete with the analyst stack");
+  assert.deepEqual(order, ["SQL and databases", "BI and visualisation", "Data processing", "Analytics and statistics", "Machine learning", "Tools and development"]);
+  const first = (group) => content.skills.find((g) => g.group === group).items[0].name;
+  assert.deepEqual([first("SQL and databases"), first("BI and visualisation"), first("Data processing")], ["SQL", "Power BI", "Python"]);
+  assert.ok(content.skills.find((g) => g.group === "BI and visualisation").items.some((s) => s.name.startsWith("Excel")), "Excel is listed");
 });
 
 test("about has a lead and labelled sections; experience separates who/when from what was done", async () => {
