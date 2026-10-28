@@ -46,7 +46,7 @@ export default {
         "The clearest example is the Olist project: a Python ETL with automated cleaning and data-quality tests, a PostgreSQL star-schema warehouse, eighteen SQL queries, a four-page Power BI dashboard with 43 DAX measures, and a short memo of findings for non-technical readers. Machine learning is a supporting skill, applied in an X-ray screening model and in explainable models on financial data.",
       ] },
       { k: "How I check results", body: [
-        "I check a result before I report it. Two findings on this site correct my own first numbers. OsteoScan's first 97.28% accuracy came from the same patients appearing on both sides of the split; the corrected figure is 61.5%. On Olist, my demand forecast did not beat a plain seasonal baseline (WAPE 0.2310 against 0.2308), so the simpler baseline was recommended.",
+        "I check a result before I report it. Two results on this site changed after validation. OsteoScan's first 97.28% accuracy came from the same patients appearing on both sides of the split; the corrected figure is 61.5%. On Olist, my demand forecast did not beat a plain seasonal baseline (WAPE 0.2310 against 0.2308), so the simpler baseline was recommended.",
         "Findings from observational data are reported as associations, not causes.",
       ] },
       { k: "Now", body: [

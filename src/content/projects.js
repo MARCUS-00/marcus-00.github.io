@@ -26,7 +26,7 @@
  *   code: a verbatim excerpt from the repository, { caption, lang, code, href, text }.
  *   media: a supplied capture, { src (path under src/static/), alt, caption?, width, height }.
  *   pending: { t, d? }, a plain, non-clickable note for evidence that exists but is not shown
- *   yet. Never put a stand-in image in media.
+ *   on the site. Never put a stand-in image in media.
  *
  */
 
@@ -291,9 +291,9 @@ export default [
       note: "Shown on a full 0.40 – 1.00 axis so the size of the gap is not exaggerated.",
     },
     limits: "This is a research scaffold rather than a trading system, and the result is close enough to chance that it should not be read as a working predictor. The stock universe is 40 large-cap equities, not the full Nifty 50, and is one present-day list applied across 2020 to 2026, so it carries survivorship bias. The time-based splits have no embargo gap, so labels in the last ten trading days before each split boundary depend on prices from the next split.",
-    /* The repository and demo are public but not yet confirmed for portfolio use, so they are not linked. */
+    /* The repository and demo are public but not linked from this site; the note says so without promising links later. */
     evidence: {
-      pending: { t: "Repository and demo not linked yet", d: "Links will appear here once they are confirmed for portfolio use." },
+      pending: { t: "Source code and public demo not currently linked", d: "This case study documents the methodology, evaluation and limitations." },
     },
   },
 ];
