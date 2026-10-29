@@ -13,7 +13,7 @@ export default [
     field: "Computer Science",
     institution: "PES University",
     location: "Bengaluru",
-    dates: "2023 — July 2026",
+    dates: "2023 — 2026",
     year: "2026",
     status: "Completed July 2026",
   },

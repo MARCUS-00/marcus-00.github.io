@@ -380,6 +380,8 @@ test("the site name is Manoj Kumar, and Work, projects and case studies are labe
     const home = await readFile(join(dir, "index.html"), "utf8");
     assert.match(home, /<h1 class="name">Manoj Kumar<\/h1>/);
     assert.match(home, /<h2 id="home-work">Selected work<\/h2>/);
+    /* Home already lists every skill, so the link names its destination rather than promising more. */
+    assert.match(home, /<h2 id="home-skills">Skills<\/h2><a class="more" href="\/skills\/">Skills page<\/a>/);
     assert.equal((home.match(/class="prev-item"/g) || []).length, 3, "home previews the three projects");
     assert.ok(!home.includes('class="proj"'), "home does not repeat the Work page's full cards");
     assert.equal((home.match(/>View case study</g) || []).length, 3);

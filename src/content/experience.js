@@ -21,9 +21,9 @@ export default [
     summary: "Research under faculty supervision: an explainable, multimodal machine-learning pipeline predicting 10-day price direction for 40 Indian large-cap equities.",
     did: [
       "Combined price and technical indicators, fundamentals, FinBERT news sentiment and macroeconomic events into a 68-feature dataset.",
-      "Engineered a per-stock sentiment-decay feature tuned on training data only, and guarded against lookahead bias with time-based splits, an automated leakage audit and a regression-test suite.",
+      "Engineered a per-stock sentiment-decay feature tuned on training data only, and guarded against lookahead bias with time-based splits, an automated leakage audit and a 17-test regression suite.",
       "Trained an AUC-weighted XGBoost and LSTM ensemble and reported its result as measured, including where it fell below a simple always-up baseline.",
-      "Designed a regime-adaptive confidence threshold that produces a ranked daily watchlist, and backtested the signals with 0.1% transaction costs; no trading edge is claimed.",
+      "Designed a regime-adaptive confidence threshold that produces a ranked daily watchlist, and backtested the ensemble signals with 0.1% transaction costs; no trading edge is claimed.",
       "Turned SHAP attributions into plain-English, per-prediction explanations in a Streamlit app for non-technical users.",
     ],
     tools: ["Python", "XGBoost", "LSTM", "PyTorch", "FinBERT", "SHAP", "Streamlit"],

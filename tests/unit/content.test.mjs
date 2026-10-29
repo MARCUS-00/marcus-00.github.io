@@ -55,6 +55,12 @@ test("factual guards", () => {
   /* The capstone report lists four team members; the case study must not read as solo work. */
   const osteoContext = content.projects.find((p) => p.id === "osteoscan").overview.find((o) => o.k === "Context").v;
   assert.match(osteoContext, /four-person capstone/, "OsteoScan was a team capstone");
+  /* The internship bullets follow the corrected résumé: pytest collects 17 tests, and the backtest ran the ungated ensemble signals. */
+  const did = content.experience[0].did.join(" ");
+  assert.match(did, /a 17-test regression suite/, "C3I test count as collected");
+  assert.match(did, /backtested the ensemble signals/, "the backtest is of the ensemble signals, not the gated watchlist");
+  /* The completion month is stated once: in the status, not again in the dates. */
+  for (const e of content.education) if (e.status) assert.ok(!e.dates.includes(e.status.replace(/^Completed /, "")), `${e.qualification}: completion date stated once`);
   /* The only email address and phone number anywhere in the content are the current ones. */
   assert.deepEqual([...new Set(all.match(/[\w.+-]+@[\w-]+(?:\.[\w-]+)+/g))], [content.profile.email], "one email address");
   assert.deepEqual([...new Set(all.match(/\+?\d[\d ()-]{8,}\d/g) || [])], [content.profile.phone], "one phone number");

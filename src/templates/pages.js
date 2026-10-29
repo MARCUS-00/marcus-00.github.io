@@ -72,7 +72,7 @@ export function home(c, url) {
   </section>
 
   <section class="section" aria-labelledby="home-skills">
-    <div class="section-head"><h2 id="home-skills">Skills</h2><a class="more" href="${url(routes.skills)}">Full breakdown</a></div>
+    <div class="section-head"><h2 id="home-skills">Skills</h2><a class="more" href="${url(routes.skills)}">Skills page</a></div>
     <div class="rows">${skillSummaryRows(skills)}</div>
   </section>
 
