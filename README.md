@@ -33,7 +33,7 @@ measures and a one-page memo of findings and recommendations.
 
 ### [OsteoScan: osteoporosis screening from dental X-rays](https://marcus-00.github.io/p/osteoscan/)
 
-A project at PES University (2025–2026): a three-class bone-density classifier (EfficientNet-B0 with
+A four-person capstone project at PES University (2025–2026): a three-class bone-density classifier (EfficientNet-B0 with
 a frozen ImageNet backbone) for dental periapical radiographs from 13 patients in a public Mendeley
 dataset, served as a Flask web app with Grad-CAM heatmaps and PDF reports.
 

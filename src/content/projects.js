@@ -77,7 +77,7 @@ export default [
       { k: "Context", v: "A personal analytics project, 2026, built on a public dataset." },
       { k: "Problem", v: "Three planning questions, framed as a marketplace's leadership would ask them: what drives revenue and where is it concentrated; what share of customers ever return; and does late delivery measurably affect satisfaction?" },
       { k: "Data", v: "The public Olist Brazilian e-commerce dataset: 99,441 orders across nine relational tables, from 2016 to 2018." },
-      { k: "What made it hard", v: "customer_id identifies an order, not a person, so a naive repeat-purchase rate reads as roughly zero. Item totals and payments disagree on 303 orders. Revenue and demand need different populations of orders." },
+      { k: "What made it hard", v: "The customer_id field identifies an order, not a person, so a naive repeat-purchase rate reads as roughly zero. Item totals and payments disagree on 303 orders. Revenue and demand need different populations of orders." },
       { k: "Approach", v: "A validated Python ETL into a PostgreSQL 16 star schema; eighteen SQL queries using joins, CTEs and window functions (fifteen business questions and three data-quality and reconciliation checks); a Mann-Whitney U test; cohort and RFM analysis; a walk-forward demand forecast; a four-page Power BI dashboard with 43 DAX measures; an Excel pivot summary; and a short written memo of findings and recommendations." },
     ],
     /* The repository's headline finding, from docs/findings.md #2 (percentages rounded to one place).
@@ -173,7 +173,7 @@ export default [
       { k: "Patients", v: "13" },
     ],
     overview: [
-      { k: "Context", v: "A project at PES University, 2025 to 2026, built on a public dataset." },
+      { k: "Context", v: "A four-person capstone project at PES University, 2025 to 2026, built on a public dataset." },
       { k: "Problem", v: "Dental X-rays are taken routinely; bone-density scans are not. Can a periapical radiograph flag patients who should be sent for one?" },
       { k: "Data", v: "A public Mendeley dataset of dental periapical radiographs: 13 of its 31 subjects (3 normal, 6 osteopenia, 4 osteoporosis), cut into 75,075 augmented 100×100 patches; every second patch, 37,538 in all, was used for training and evaluation." },
       { k: "What made it hard", v: "Patches from one patient are alike, so a split made at patch level leaks patients into the test set. With 13 patients, and only 3 in the normal class, every result carries a wide interval." },

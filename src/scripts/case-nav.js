@@ -40,19 +40,29 @@ export function initCaseNav({ motion }) {
     if (key && section(key)) go(key, false);
   });
 
-  /* Scroll spy: the index marks the section occupying the reading line. */
-  if (toc && "IntersectionObserver" in window) {
+  /*
+   * Scroll spy: the index marks the section occupying the reading line, nothing while the
+   * reader is above the first section, and the last section once the page can scroll no
+   * further (a short final section never reaches the line on its own).
+   */
+  if (toc) {
     const links = Array.from(toc.querySelectorAll("a[data-sec]"));
-    const spy = new IntersectionObserver((entries) => {
-      entries.forEach((en) => {
-        if (!en.isIntersecting) return;
-        const key = en.target.dataset.sec;
-        links.forEach((a) => {
-          if (a.dataset.sec === key) a.setAttribute("aria-current", "location");
-          else a.removeAttribute("aria-current");
-        });
+    const secs = Array.from(view.querySelectorAll(".case-sec"));
+    let queued = false;
+    const mark = () => {
+      queued = false;
+      const line = innerHeight * 0.3;
+      let key = "";
+      for (const s of secs) if (s.getBoundingClientRect().top <= line) key = s.dataset.sec;
+      if (key && innerHeight + scrollY >= document.documentElement.scrollHeight - 2) key = secs[secs.length - 1].dataset.sec;
+      links.forEach((a) => {
+        if (a.dataset.sec === key) a.setAttribute("aria-current", "location");
+        else a.removeAttribute("aria-current");
       });
-    }, { rootMargin: "-25% 0px -65% 0px" });
-    view.querySelectorAll(".case-sec").forEach((s) => spy.observe(s));
+    };
+    const queue = () => { if (!queued) { queued = true; requestAnimationFrame(mark); } };
+    window.addEventListener("scroll", queue, { passive: true });
+    window.addEventListener("resize", queue);
+    mark();
   }
 }

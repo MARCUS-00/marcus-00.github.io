@@ -92,6 +92,24 @@ test("section deep links open at the section, with history per section", async (
   });
 });
 
+/* A short final section never reaches the reading line, and above the first section nothing is being read. */
+test("the section index marks nothing at the top, the section being read, and the last section at the foot", async () => {
+  for (const [id, width] of [["osteoscan", 1440], ["c3i", 1440], ["c3i", 390], ["olist", 1440]]) {
+    await withPage({ viewport: { width, height: width < 700 ? 844 : 900 }, reducedMotion: "reduce" }, async (page) => {
+      await page.goto(u(`/p/${id}/`));
+      const marked = () => page.evaluate(() => document.querySelector('.toc a[aria-current="location"]')?.dataset.sec || "");
+      const until = (sec) => page.waitForFunction((s) => (document.querySelector('.toc a[aria-current="location"]')?.dataset.sec || "") === s, sec, { timeout: 5000 });
+      assert.equal(await marked(), "", `${id} @${width}: nothing marked at the top`);
+      await page.evaluate((i) => document.getElementById(`s-${i}-decisions`).scrollIntoView(), id);
+      await until("decisions");
+      await page.evaluate(() => scrollTo(0, document.documentElement.scrollHeight));
+      await until("evidence");
+      await page.evaluate(() => scrollTo(0, 0));
+      await until("");
+    });
+  }
+});
+
 test("older hash-style links redirect to the real addresses", async () => {
   await withPage({}, async (page) => {
     await page.goto(u("/#/p/osteoscan/validation"));

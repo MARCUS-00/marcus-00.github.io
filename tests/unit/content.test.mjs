@@ -52,6 +52,9 @@ test("factual guards", () => {
   assert.doesNotMatch(all, /not linked yet|will appear here once|confirmed for portfolio use/i, "no note that promises links later");
   assert.doesNotMatch(all, /first numbers? (was|were) wrong|correct my own first numbers/i, "Olist's validation changed a recommendation, not a wrong number");
   assert.doesNotMatch(all, /approached 100%|over 40 points/, "no figures beyond what the project records show");
+  /* The capstone report lists four team members; the case study must not read as solo work. */
+  const osteoContext = content.projects.find((p) => p.id === "osteoscan").overview.find((o) => o.k === "Context").v;
+  assert.match(osteoContext, /four-person capstone/, "OsteoScan was a team capstone");
   /* The only email address and phone number anywhere in the content are the current ones. */
   assert.deepEqual([...new Set(all.match(/[\w.+-]+@[\w-]+(?:\.[\w-]+)+/g))], [content.profile.email], "one email address");
   assert.deepEqual([...new Set(all.match(/\+?\d[\d ()-]{8,}\d/g) || [])], [content.profile.phone], "one phone number");
