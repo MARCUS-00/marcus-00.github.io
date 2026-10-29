@@ -187,7 +187,7 @@ export default [
     ],
     decisions: [
       { q: "Discarding the first 97.28%", a: "The first split put images from the same patient on both sides of the train/test divide, so the model could recognise patients instead of bone density. Corrected patient-grouped cross-validation gives 61.5%." },
-      { q: "Freezing the backbone", a: "With only 13 patients, fine-tuning overfit: training accuracy approached 100% while held-out accuracy collapsed. Freezing the ImageNet backbone and training only the classification head generalised better." },
+      { q: "Freezing the backbone", a: "With only 13 patients, fine-tuning overfit: training accuracy kept climbing while held-out accuracy collapsed. Freezing the ImageNet backbone and training only the classification head generalised better." },
       { q: "Serving the model", a: "The trained model runs behind a Flask service, deployed on Hugging Face Spaces, so a radiograph can be sent over HTTP and a predicted class comes back with a PDF report. A 14-test suite runs in GitHub Actions CI." },
     ],
     /* The 95% interval is the percentile bootstrap of the 13 per-patient results (8 correct, from the
@@ -272,7 +272,7 @@ export default [
     ],
     decisions: [
       { q: "Keeping the future out of training", a: "Splits are time-based with no shuffling, and the per-stock sentiment-decay feature was tuned on training data only, so no feature sees the period it is asked to predict." },
-      { q: "Validating on a train-only model", a: "Validation predictions come from a model trained on the training rows only, never from the refit on training and validation data. Without this, the gap between validation and test AUC was over 40 points and silently broke the ensemble weighting." },
+      { q: "Validating on a train-only model", a: "Validation predictions come from a model trained on the training rows only, never from the refit on training and validation data. Without this, the gap between validation and test AUC was about 40 points and silently broke the ensemble weighting." },
       { q: "Backtesting with costs", a: "With a 0.1% cost on every position change, the ensemble's signals returned 10.52% over the test period against 12.23% for equal-weight buy-and-hold, and all four confidence-gated configurations had a negative Sharpe ratio. Neither result supports a tradeable edge. The signals feed a ranked daily watchlist filtered by a regime-adaptive confidence threshold." },
       { q: "Explaining the model with SHAP", a: "SHAP attributions show which inputs the model relied on, and were turned into plain-English, per-prediction explanations for non-technical readers in a Streamlit app." },
     ],

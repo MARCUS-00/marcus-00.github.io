@@ -50,6 +50,8 @@ test("factual guards", () => {
   assert.doesNotMatch(all, /knee/i, "OsteoScan uses dental radiographs");
   assert.doesNotMatch(all, /single 28-day window/i, "Olist forecast was walk-forward validated");
   assert.doesNotMatch(all, /not linked yet|will appear here once|confirmed for portfolio use/i, "no note that promises links later");
+  assert.doesNotMatch(all, /first numbers? (was|were) wrong|correct my own first numbers/i, "Olist's validation changed a recommendation, not a wrong number");
+  assert.doesNotMatch(all, /approached 100%|over 40 points/, "no figures beyond what the project records show");
   /* The only email address and phone number anywhere in the content are the current ones. */
   assert.deepEqual([...new Set(all.match(/[\w.+-]+@[\w-]+(?:\.[\w-]+)+/g))], [content.profile.email], "one email address");
   assert.deepEqual([...new Set(all.match(/\+?\d[\d ()-]{8,}\d/g) || [])], [content.profile.phone], "one phone number");

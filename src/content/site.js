@@ -33,7 +33,7 @@ export default {
 
   statement: {
     lead: "Anything can be made to look like it works. The validation step is where you find out.",
-    sub: "Each of these projects has a validation step before its result is used. Twice it has told me my first number was wrong, and both corrections are on this site with the real figures.",
+    sub: "Each of these projects has a validation step before its result is used. Twice it has changed the result, and both changes are on this site with the real figures.",
   },
 
   /* About: a short identity paragraph, then labelled sections. Facts only from the résumé and
