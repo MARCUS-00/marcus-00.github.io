@@ -195,14 +195,14 @@ export default [
        Binomial(13, 8/13), and the 2.5% and 97.5% points are taken as the generalised inverse of
        its CDF, Q(q) = min{x : F(x) >= q}. F(4/13) = 0.0245 and F(5/13) = 0.0789 give 5/13 = 38.5%;
        F(10/13) = 0.9281 and F(11/13) = 0.9834 give 11/13 = 84.6%. F never equals 0.025 or 0.975,
-       so other tie conventions agree. The 30.8% that the repository README and model card quote
+       so other tie conventions agree. The 30.8% that the repository README and model card quoted
        came from a 10,000-draw Monte Carlo estimate (git 5b24f94, bootstrap_ci, seed 42). Re-running
        that code on these outcomes in that notebook's lexicographic source order places 279 draws at
        4/13 or below against 245 expected, giving 30.8%; in the executed notebook's numeric order it
        places 246 and gives 38.5%. About 36% of such runs give 30.8% (checked 18 Oct 2026). This is
        the bootstrap distribution computed exactly, not an exact binomial interval: Clopper-Pearson
-       for 8/13 is 31.6% to 86.1%. As of commit ae318a3 (checked 18 Oct 2026) both still quote [30.8%, 84.6%]; update
-       them to the exact interval, and say how the earlier estimate arose, so the sources agree.
+       for 8/13 is 31.6% to 86.1%. Up to commit ae318a3 both quoted [30.8%, 84.6%]; their corrected
+       wording (29 Oct 2026) gives this exact interval and explains how the earlier estimate arose.
        tests/unit/content.test.mjs recomputes this from the finding.
        Patches: 75,075 in the dataset (13 sources × 5,775, counted 17 Oct 2026); STRIDE=2 keeps 37,538. */
     validation: {

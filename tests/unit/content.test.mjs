@@ -67,7 +67,7 @@ test("factual guards", () => {
   assert.equal(content.profile.email, "mailtomanojkumar07@gmail.com");
   assert.equal(content.profile.linkedin, "https://www.linkedin.com/in/manoj-kumar-analytics", "confirmed LinkedIn URL");
   assert.doesNotMatch(all, /JB Portals|PES C3I|statsmodels/, "unconfirmed organisation and tool claims stay out");
-  /* The dashboard capture is the repository's own screenshot; no published report URL exists. */
+  /* The dashboard capture is rendered from the repository's native Power BI export and served from this site; no published report URL exists. */
   const olist = content.projects.find((p) => p.id === "olist");
   assert.equal(olist.evidence.media.src, "/olist-dashboard-overview.jpg");
   assert.deepEqual([olist.evidence.media.width, olist.evidence.media.height], [1600, 1000]);

@@ -33,9 +33,10 @@ measures and a one-page memo of findings and recommendations.
 
 ### [OsteoScan: osteoporosis screening from dental X-rays](https://marcus-00.github.io/p/osteoscan/)
 
-A four-person capstone project at PES University (2025–2026): a three-class bone-density classifier (EfficientNet-B0 with
-a frozen ImageNet backbone) for dental periapical radiographs from 13 patients in a public Mendeley
-dataset, served as a Flask web app with Grad-CAM heatmaps and PDF reports.
+A four-person capstone project at PES University (2025–2026): a three-class bone-density
+classifier (EfficientNet-B0 with a frozen ImageNet backbone) for dental periapical radiographs from
+13 patients in a public Mendeley dataset, served as a Flask web app with Grad-CAM heatmaps and PDF
+reports.
 
 - **Findings:** the first evaluation's 97.28% accuracy came from patient-level leakage — a random
   patch-level split put the same patients in both the training and the test data.
@@ -165,6 +166,6 @@ src/templates/   pure functions: data → HTML (layout, pages, components)
 src/styles/      the stylesheet
 src/scripts/     progressive enhancement: display, menu, topology, motion, case navigation
 src/static/      fonts (self-hosted, OFL), favicon, résumé PDF, link-preview image, project image
-scripts/         build, dev and static server
+scripts/         build, dev server, static server and the link-preview image renderer
 tests/           unit/ (node:test) and e2e/ (playwright-core + axe-core)
 ```
